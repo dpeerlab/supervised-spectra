@@ -181,7 +181,7 @@ class SPECTRA(nn.Module):
         # trust the user to input a np.ndarray for adj_matrix
         self.adj_matrix = self.__prepare_adj_matrix(adj_matrix)
         self.adj_matrix_1m = self.__prepare_adj_matrix(1 - adj_matrix)
-        self.weights = self.__prepare_weight_matrix(weights)
+        self.weights = self.__prepare_weight_matrix(weights, adj_matrix)
 
         self.theta = nn.Parameter(Normal(0.0, 1.0).sample([self.p, self.L]))
         self.alpha = nn.Parameter(Normal(0.0, 1.0).sample([self.n, self.L]))
@@ -210,7 +210,7 @@ class SPECTRA(nn.Module):
         # for convenience store 1 - adjacency matrix elements [except on diagonal, where we store 0]
         self.adj_matrix_1m = {
             cell_type: (
-                self._prepare_adj_matrix(1 - mat)
+                self.__prepare_adj_matrix(1 - mat)
                 if len(mat) > 0
                 else []
             )
@@ -220,7 +220,7 @@ class SPECTRA(nn.Module):
         # if weights are provided, convert these to tensors, else set weights = to adjacency matrices
         self.weights = {
             cell_type: (
-                self._prepare_weight_matrix(w)
+                self.__prepare_weight_matrix(w, adj_matrix[cell_type])
                 if len(w) > 0
                 else []
             )
@@ -328,7 +328,7 @@ class SPECTRA(nn.Module):
         eta_global = 0.5 * (eta_global + eta_global.T)
         gene_scaling_global = torch.sigmoid(self.gene_scaling["global"])
         kappa_global = torch.sigmoid(self.kappa["global"])
-        rho_global = torch.sigmoid(rho["global"])
+        rho_global = torch.sigmoid(self.rho["global"])
 
         # loop through cell types and evaluate loss at every cell type
         for cell_type in self.cell_types:
