@@ -2,6 +2,7 @@
 # Editors
 .vscode/
 .idea/
+.python-version/
 
 # Vagrant
 .vagrant/
