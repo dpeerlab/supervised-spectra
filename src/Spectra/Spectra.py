@@ -188,11 +188,11 @@ class SPECTRA(nn.Module):
         self.eta = nn.Parameter(Normal(0.0, 1.0).sample([self.L, self.L]))
         self.gene_scaling = nn.Parameter(Normal(0.0, 1.0).sample([self.p]))
 
-        if kappa == None:
+        if kappa is None:
             self.kappa = nn.Parameter(Normal(0.0, 1.0).sample())
         else:
             self.kappa = torch.tensor(np.log(kappa / (1 - kappa)))  #
-        if rho == None:
+        if rho is None:
             self.rho = nn.Parameter(Normal(0.0, 1.0).sample())
         else:
             self.rho = torch.tensor(np.log(rho / (1 - rho)))
@@ -201,7 +201,7 @@ class SPECTRA(nn.Module):
         # convert adjacency matrices to pytorch tensors to make optimization easier later
         self.adj_matrix = {
             cell_type: (
-                self._prepare_adj_matrix(mat) 
+                self.__prepare_adj_matrix(mat) 
                 if len(mat) > 0 
                 else []
             )
@@ -218,14 +218,17 @@ class SPECTRA(nn.Module):
         }  # one adj_matrix per cell type
 
         # if weights are provided, convert these to tensors, else set weights = to adjacency matrices
-        self.weights = {
-            cell_type: (
-                self.__prepare_weight_matrix(w, adj_matrix[cell_type])
-                if len(w) > 0
-                else []
-            )
-            for cell_type, w in weights.items()
-        }
+        if weights: 
+            self.weights = {
+                cell_type: (
+                    self.__prepare_weight_matrix(w, adj_matrix[cell_type])
+                    if len(w) > 0
+                    else []
+                )
+                for cell_type, w in weights.items()
+            }
+        else: 
+            self.weights = self.adj_matrix
 
         self.cell_types = np.unique(
             labels
@@ -243,9 +246,9 @@ class SPECTRA(nn.Module):
         self.eta = nn.ParameterDict()
         self.gene_scaling = nn.ParameterDict()
 
-        if kappa == None:
+        if kappa is None:
             self.kappa = nn.ParameterDict()
-        if rho == None:
+        if rho is None:
             self.rho = nn.ParameterDict()
         # initialize global params
         self.theta["global"] = nn.Parameter(
@@ -304,13 +307,12 @@ class SPECTRA(nn.Module):
         return torch.Tensor(Spectra_util.zero_out_diagonal(arr))
 
     def __prepare_weight_matrix(self, weights, adj_matrix):
-        if weights is not None:
+        if weights:
             return torch.Tensor(weights) - torch.Tensor(
                 np.diag(np.diag(adj_matrix))
             )
         else:
             return adj_matrix
-
 
     def loss_cell_types(self, X, labels):
         assert (
@@ -702,9 +704,9 @@ class SPECTRA_Model:
         # add all model parameters as attributes
 
         if self.use_cell_types:
-            self.__store_parameters(labels)
+            self.__store_parameters_cell_types(labels)
         else:
-            self.__store_parameters_no_celltypes()
+            self.__store_parameters_no_cell_types()
 
     def __get_loss(self, labels, X):
         if self.internal_model.use_cell_types:
@@ -712,7 +714,6 @@ class SPECTRA_Model:
             return self.internal_model.loss_cell_types(X, labels)
         elif self.internal_model.use_cell_types == False:
             return self.internal_model.loss_no_cell_types(X)
-
 
     def save(self, fp):
         torch.save(self.internal_model.state_dict(), fp)
@@ -890,7 +891,7 @@ class SPECTRA_Model:
         filter based on L_ct
         """
         if self.use_cell_types:
-            if init_scores == None:
+            if init_scores is None:
                 init_scores = compute_init_scores(annotations, word2id, torch.Tensor(W))
             gs_dict = OrderedDict()
             for ct in annotations.keys():
@@ -910,7 +911,7 @@ class SPECTRA_Model:
                 gs_dict[ct] = lst_ct
             self.internal_model.initialize_cell_types(gene_sets=gs_dict, val=val)
         else:
-            if init_scores == None:
+            if init_scores is None:
                 init_scores = compute_init_scores_noct(
                     annotations, word2id, torch.Tensor(W)
                 )
@@ -1176,7 +1177,7 @@ def est_spectra(
             min_len=min_gs_num,
             use_cell_types=use_cell_types,
         )
-    if L == None:
+    if L is None:
         init_flag = True
         if use_cell_types:
             L = {}
