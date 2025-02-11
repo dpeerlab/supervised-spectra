@@ -168,13 +168,46 @@ class SPECTRA(nn.Module):
        
 
     def __initialize_parameters(self, labels, adj_matrix, weights, kappa, rho): 
-        # dispatch initialization based on use_cell_types
+        """
+        Dispatch parameter initialization based on whether cell type-specific mode is used.
+        
+        Parameters
+        ----------
+        labels : np.ndarray
+            Cell type labels.
+        adj_matrix : dict or np.ndarray
+            Adjacency matrix/matrices.
+        weights : dict, np.ndarray or None
+            Weight matrix/matrices.
+        kappa : float or None
+            Background edge rate (or None to estimate).
+        rho : float or None
+            Background non-edge rate (or None to estimate).
+        """
         if self.use_cell_types: 
             self.__initialize_parameters_cell_types(labels, adj_matrix, weights, kappa, rho)
         else: 
             self.__initialize_parameters_no_cell_types(adj_matrix, weights, kappa, rho)
 
-    def __initialize_parameters_no_cell_types(self, adj_matrix, weights, kappa, rho): 
+    def __initialize_parameters_no_cell_types(self, adj_matrix, weights, kappa, rho):
+        """
+        Initialize model parameters when cell type information is not used.
+        
+        Parameters
+        ----------
+        adj_matrix : np.ndarray
+            (p, p)-shaped adjacency matrix.
+        weights : np.ndarray or None
+            (p, p)-shaped edge weight matrix. If None, weights default to the adjacency matrix.
+        kappa : float or None
+            Fixed background edge rate, or None to estimate.
+        rho : float or None
+            Fixed background non-edge rate, or None to estimate.
+        
+        Notes
+        -----
+        This method creates simple nn.Parameters for theta, alpha, eta, gene_scaling, kappa, and rho.
+        """
         # check that L is an int
         assert isinstance(self.L, int)
 
@@ -197,7 +230,27 @@ class SPECTRA(nn.Module):
         else:
             self.rho = torch.tensor(np.log(rho / (1 - rho)))
 
-    def __initialize_parameters_cell_types(self, labels, adj_matrix, weights, kappa, rho): 
+    def __initialize_parameters_cell_types(self, labels, adj_matrix, weights, kappa, rho):
+        """
+        Initialize model parameters for cell type-specific mode.
+        
+        Parameters
+        ----------
+        labels : np.ndarray
+            Array of cell type labels used to determine unique cell types and their counts.
+        adj_matrix : dict
+            Dictionary mapping cell type keys to adjacency matrices.
+        weights : dict or None
+            Dictionary mapping cell type keys to weight matrices (if provided).
+        kappa : float or None
+            Fixed background edge rate, or None to estimate.
+        rho : float or None
+            Fixed background non-edge rate, or None to estimate.
+        
+        Notes
+        -----
+        Converts each input matrix to a torch.Tensor (with the diagonal zeroed) and stores parameters in nn.ParameterDicts.
+        """ 
         # convert adjacency matrices to pytorch tensors to make optimization easier later
         self.adj_matrix = {
             cell_type: (
@@ -304,9 +357,37 @@ class SPECTRA(nn.Module):
             self.rho = nn.ParameterDict(self.rho)
     
     def __prepare_adj_matrix(self, arr):
+        """
+        Prepare an adjacency matrix by zeroing out its diagonal.
+        
+        Parameters
+        ----------
+        arr : np.ndarray
+            Raw adjacency matrix.
+        
+        Returns
+        -------
+        torch.Tensor
+            Tensor with diagonal entries set to zero.
+        """
         return torch.Tensor(Spectra_util.zero_out_diagonal(arr))
 
     def __prepare_weight_matrix(self, weights, adj_matrix):
+        """
+        Prepare the weight matrix by subtracting the diagonal (if weights are provided).
+        
+        Parameters
+        ----------
+        weights : np.ndarray or None
+            The edge weight matrix.
+        adj_matrix : np.ndarray
+            The corresponding adjacency matrix used to compute the diagonal.
+        
+        Returns
+        -------
+        torch.Tensor
+            Processed weight matrix, or the adjacency matrix if weights is None.
+        """
         if weights:
             return torch.Tensor(weights) - torch.Tensor(
                 np.diag(np.diag(adj_matrix))
@@ -315,6 +396,26 @@ class SPECTRA(nn.Module):
             return adj_matrix
 
     def loss_cell_types(self, X, labels):
+        """
+        Compute the loss for the cell type-specific model.
+        
+        This function calculates both the reconstruction loss and the graph loss for each cell type.
+        For each cell type, it selects the corresponding subset of cells from X, computes the reconstruction loss using
+        the adjusted global and cell type-specific factor matrices, and computes the graph loss from the adjacency data.
+        The global graph loss is then added.
+        
+        Parameters
+        ----------
+        X : np.ndarray or torch.Tensor
+            Input expression data.
+        labels : np.ndarray
+            Array of cell type labels corresponding to the rows of X.
+        
+        Returns
+        -------
+        torch.Tensor
+            Scalar loss value.
+        """
         assert (
             self.use_cell_types
         )  # if this is False, fail because model has not been initialized to use cell types
@@ -413,6 +514,21 @@ class SPECTRA(nn.Module):
         return loss
 
     def loss_no_cell_types(self, X):
+        """
+        Compute the loss for the model when cell type information is not used.
+        
+        This method computes the reconstruction loss and graph loss using global parameters only.
+        
+        Parameters
+        ----------
+        X : np.ndarray or torch.Tensor
+            Input expression data.
+        
+        Returns
+        -------
+        torch.Tensor
+            Scalar loss value.
+        """
         assert self.use_cell_types == False  # if this is True, just fail
         X = torch.Tensor(X)
 
@@ -457,9 +573,20 @@ class SPECTRA(nn.Module):
 
     def initialize_cell_types(self, gene_sets, val):
         """
-        form of gene_sets:
+        Initialize model parameters using gene set annotations for cell type-specific initialization.
+        
+        For each cell type (including 'global'), this method updates the model's parameters (theta and eta)
+        based on the provided gene sets. The gene sets are expected to be a dictionary mapping cell types
+        to collections of gene index sets.
 
         cell_type (inc. global) : set of sets of idxs
+        
+        Parameters
+        ----------
+        gene_sets : dict
+            Dictionary mapping each cell type (including 'global') to a set or list of gene index sets.
+        val : float
+            Initialization value applied to the parameters.
         """
 
         for ct in self.cell_types:
@@ -496,6 +623,18 @@ class SPECTRA(nn.Module):
         )
 
     def initialize_no_cell_types(self, gs_list, val):
+        """
+        Initialize model parameters using a list of gene sets for the non-cell type model.
+        
+        Updates the global parameters (theta and eta) based on the provided list of gene sets.
+        
+        Parameters
+        ----------
+        gs_list : list
+            List of gene sets (each gene set is a list of gene indices).
+        val : float
+            Initialization value to be assigned.
+        """
         assert self.L >= len(gs_list)
         count = 0
         for gene_set in gs_list:
@@ -676,6 +815,25 @@ class SPECTRA_Model:
         num_epochs=10000,
         verbose=False,
     ):
+        """
+        Train the internal SPECTRA model.
+        
+        Implements an adaptive learning rate schedule; if the loss does not decrease over epochs,
+        the learning rate is updated accordingly.
+        
+        Parameters
+        ----------
+        X : np.ndarray or torch.Tensor
+            Expression data for training.
+        labels : np.ndarray, optional
+            Cell type labels (required if use_cell_types is True).
+        lr_schedule : list of float, optional
+            A list of learning rate values to cycle through.
+        num_epochs : int, optional
+            Maximum number of training epochs.
+        verbose : bool, optional
+            If True, prints messages when the learning rate is updated.
+        """
         opt = torch.optim.Adam(self.internal_model.parameters(), lr=lr_schedule[0])
         counter = 0
         last = np.inf
@@ -709,6 +867,24 @@ class SPECTRA_Model:
             self.__store_parameters_no_cell_types()
 
     def __get_loss(self, labels, X):
+        """
+        Retrieve the loss from the internal model.
+        
+        Depending on whether cell type information is used, this method calls either the cell type-specific
+        loss function or the global loss function.
+        
+        Parameters
+        ----------
+        labels : np.ndarray
+            Cell type labels (if applicable).
+        X : np.ndarray or torch.Tensor
+            Input expression data.
+        
+        Returns
+        -------
+        torch.Tensor
+            Computed loss value.
+        """
         if self.internal_model.use_cell_types:
             assert len(labels) == X.shape[0]
             return self.internal_model.loss_cell_types(X, labels)
@@ -716,9 +892,27 @@ class SPECTRA_Model:
             return self.internal_model.loss_no_cell_types(X)
 
     def save(self, fp):
+        """
+        Save the state of the internal SPECTRA model to a file.
+        
+        Parameters
+        ----------
+        fp : str
+            File path where the model state will be saved.
+        """
         torch.save(self.internal_model.state_dict(), fp)
 
     def load(self, fp, labels=None):
+        """
+        Load a saved state of the internal SPECTRA model from a file.
+        
+        Parameters
+        ----------
+        fp : str
+            File path from which to load the model state.
+        labels : np.ndarray, optional
+            Cell type labels required if use_cell_types is True.
+        """
         self.internal_model.load_state_dict(torch.load(fp))
         if self.use_cell_types:
             assert labels is not None
@@ -728,15 +922,19 @@ class SPECTRA_Model:
 
     def __store_parameters_cell_types(self, labels):
         """
-        Replaces __cell_scores() and __compute factors() and __compute_theta()
-        store parameters after fitting the model:
-            cell scores
-            factors
-            eta
-            scalings
-            gene scalings
-            kappa
-            rho
+        Extract and store derived parameters from the internal model for cell type-specific mode.
+        
+        After training, this method computes and stores the following:
+        - Cell scores (loading matrix)
+        - Factor matrices (theta)
+        - Interaction matrices (eta) and their diagonals
+        - Gene scaling values
+        - Estimated kappa and rho values
+        
+        Parameters
+        ----------
+        labels : np.ndarray
+            Cell type labels used to aggregate and compute factor and cell score matrices.
         """
 
         model = self.internal_model
@@ -809,6 +1007,16 @@ class SPECTRA_Model:
         }
 
     def __B_diag(self):
+        """
+        Compute and return the diagonal elements of the eta matrices for both global and cell type-specific factors.
+        
+        These values serve as a summary of the interaction strengths within each factor.
+        
+        Returns
+        -------
+        np.ndarray
+            A concatenated array of diagonal values from the global and cell type-specific eta matrices.
+        """
         model = self.internal_model
         k = sum(list(model.L.values()))
         out = np.zeros(k)
@@ -831,6 +1039,14 @@ class SPECTRA_Model:
         return out
 
     def __eta_matrices(self):
+        """
+        Extract and return the eta (interaction) matrices as numpy arrays.
+        
+        Returns
+        -------
+        OrderedDict
+            An ordered dictionary of eta matrices (for 'global' and each cell type).
+        """
         model = self.internal_model
         eta = OrderedDict()
         Bg = torch.sigmoid(model.eta["global"])
@@ -845,14 +1061,15 @@ class SPECTRA_Model:
 
     def __store_parameters_no_cell_types(self):
         """
-        store parameters after fitting the model:
-            cell scores
-            factors
-            eta
-            scalings
-            gene scalings
-            kappa
-            rho
+        Extract and store derived parameters from the internal model for the global (non-cell-type) case.
+
+        After training, this method computes and stores the following:
+        - Cell scores (loading matrix)
+        - Factor matrices (theta)
+        - Eta
+        - Interaction matrices (eta) and their diagonals
+        - Gene scaling values
+        - Estimated kappa and rho values
         """
         model = self.internal_model
         theta_ct = torch.softmax(model.theta, dim=1)
@@ -883,12 +1100,23 @@ class SPECTRA_Model:
 
     def initialize(self, annotations, word2id, W, init_scores, val=25):
         """
-        self.use_cell_types must be True
-        create form of gene_sets:
-
-        cell_type (inc. global) : set of sets of idxs
-
-        filter based on L_ct
+        Initialize the internal model parameters using gene set annotations.
+        
+        Depending on whether cell type information is used, this method processes the annotations (and optionally computes
+        initialization scores) to update the model parameters accordingly.
+        
+        Parameters
+        ----------
+        annotations : dict
+            Dictionary of gene set annotations, mapping cell types (or global) to gene set names and gene lists.
+        word2id : dict
+            Mapping from gene names to their indices.
+        W : np.ndarray or torch.Tensor
+            Expression data or related matrix used for computing initialization scores.
+        init_scores : dict or None
+            Precomputed initialization scores (if available). If None, scores are computed internally.
+        val : float, optional
+            Initialization value that influences the adjustments made to the parameters.
         """
         if self.use_cell_types:
             if init_scores is None:
@@ -967,7 +1195,24 @@ class SPECTRA_Model:
 
     def matching(self, markers, gene_names_dict, threshold=0.4):
         """
-        best match based on overlap coefficient
+        Match model factors to provided gene sets based on the overlap coefficient.
+        
+        For each marker (factor), this function computes the overlap with each gene set and selects the best match.
+        If the maximum overlap is below the specified threshold, the match is set to "0".
+        
+        Parameters
+        ----------
+        markers : array-like
+            Matrix or DataFrame of marker genes.
+        gene_names_dict : dict
+            Dictionary mapping gene set names to lists of gene names.
+        threshold : float, optional
+            Minimum overlap coefficient required for a valid match.
+        
+        Returns
+        -------
+        np.ndarray
+            An array of gene set names that best match each factor.
         """
         markers = pd.DataFrame(markers)
         if self.use_cell_types:
@@ -1350,6 +1595,27 @@ def return_markers(factor_matrix, id2word, n_top_vals=100):
 
 
 def load_from_pickle(fp, adata, gs_dict, cell_type_key):
+    """
+    Load a pre-trained SPECTRA model from a pickle file.
+    
+    Uses the AnnData object to extract the required input data and annotations.
+    
+    Parameters
+    ----------
+    fp : str
+        File path of the saved model state.
+    adata : AnnData
+        Annotated data object containing the spectra vocabulary and cell type annotations.
+    gs_dict : dict
+        Gene set dictionary.
+    cell_type_key : str
+        Key in adata.obs that contains the cell type annotations.
+    
+    Returns
+    -------
+    SPECTRA_Model
+        The loaded SPECTRA model.
+    """
     model = SPECTRA_Model(
         X=adata[:, adata.var["spectra_vocab"]].X,
         labels=np.array(adata.obs[cell_type_key]),
@@ -1362,7 +1628,30 @@ def load_from_pickle(fp, adata, gs_dict, cell_type_key):
 
 
 def graph_network(adata, mat, gene_set, thres=0.20, N=50):
-
+    """
+    Create an interactive network visualization of the inferred graph using pyvis.
+    
+    Nodes represent genes; nodes corresponding to the input gene set are highlighted with a distinct color.
+    Only the top N nodes (by summed association) are included, and edges are added if their weight exceeds thres.
+    
+    Parameters
+    ----------
+    adata : AnnData
+        Annotated data object that contains the spectra vocabulary in adata.var.
+    mat : np.ndarray
+        Inferred graph matrix (e.g., factor interactions).
+    gene_set : list
+        List of gene names to highlight.
+    thres : float, optional
+        Threshold for edge inclusion.
+    N : int, optional
+        Maximum number of top nodes to include.
+    
+    Returns
+    -------
+    Network
+        A pyvis Network object for interactive visualization.
+    """
     vocab = adata.var_names[adata.var["spectra_vocab"]]
     word2id = dict((v, idx) for idx, v in enumerate(vocab))
     id2word = dict((idx, v) for idx, v in enumerate(vocab))
@@ -1403,6 +1692,30 @@ def graph_network(adata, mat, gene_set, thres=0.20, N=50):
 
 
 def graph_network_multiple(adata, mat, gene_sets, thres=0.20, N=50):
+    """
+    Create an interactive network visualization for multiple gene sets using pyvis.
+    
+    Nodes corresponding to different gene sets are visualized in different colors.
+    The function aggregates all genes from the input gene sets and highlights them appropriately.
+    
+    Parameters
+    ----------
+    adata : AnnData
+        Annotated data object with spectra vocabulary.
+    mat : np.ndarray
+        Inferred graph matrix.
+    gene_sets : list of lists
+        List of gene sets (each gene set is a list of gene names).
+    thres : float, optional
+        Threshold for edge inclusion.
+    N : int, optional
+        Number of top nodes to include.
+    
+    Returns
+    -------
+    Network
+        A pyvis Network object representing the graph.
+    """
     gene_set = []
     for gs in gene_sets:
         gene_set += gs
@@ -1459,6 +1772,11 @@ def graph_network_multiple(adata, mat, gene_sets, thres=0.20, N=50):
 
 def gene_set_graph(gene_sets):
     """
+    Generate an interactive network graph for the provided gene sets.
+    
+    Each gene is represented as a node, and an edge is added between two genes if they belong to the same gene set.
+    Each gene set is visualized with a distinct color.
+
     input
     [
     ["a","b", ... ],
@@ -1466,6 +1784,16 @@ def gene_set_graph(gene_sets):
 
     ...
     ]
+    
+    Parameters
+    ----------
+    gene_sets : list of lists
+        Each inner list contains gene names belonging to a gene set.
+    
+    Returns
+    -------
+    Network
+        A pyvis Network object representing the gene set graph.
     """
 
     net = Network(
