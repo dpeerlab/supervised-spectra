@@ -3,17 +3,13 @@ name = "supervised-spectra"
 version = "0.1.0"
 description = ""
 authors = ["Rahul Saha <rah4927@gmail.com>"]
-license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-numpy = "1.21.0"
-scipy = "^1.7.3"
-torch = "^1.10.1"
-opt-einsum = "^3.3.0"
-pandas = "^1.3.5"
-pyvis = "^0.1.9"
-
+python = ">=3.10"
+scanpy = "^1.10.4"
+torch = "^2.6.0"
+opt-einsum = "^3.4.0"
+pyvis = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 
