@@ -3,6 +3,7 @@
 .vscode/
 .idea/
 .python-version/
+SOFA/
 
 # Vagrant
 .vagrant/
