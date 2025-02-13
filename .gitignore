@@ -2,6 +2,9 @@
 # Editors
 .vscode/
 .idea/
+.python-version/
+SOFA/
+test_data/
 
 # Vagrant
 .vagrant/
