@@ -1,4 +1,4 @@
-from .Spectra import SPECTRA, SPECTRA_Model
+from .Spectra import SPECTRA_Model
 from .Spectra import (
     get_factor_celltypes,
     est_spectra,
@@ -8,5 +8,3 @@ from .Spectra import (
     gene_set_graph,
 )
 from .load import default_gene_sets, sample_data
-
-# from .sample_data import sample_data

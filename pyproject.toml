@@ -3,6 +3,10 @@ name = "supervised-spectra"
 version = "0.1.0"
 description = ""
 authors = ["Rahul Saha <rah4927@gmail.com>"]
+packages = [
+    {include = "Spectra", from="src"},
+    {include = "Spectra/load", from="src"},
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10"
@@ -10,6 +14,7 @@ scanpy = "^1.10.4"
 torch = "^2.6.0"
 opt-einsum = "^3.4.0"
 pyvis = "^0.3.2"
+ipykernel = "^6.29.5"
 
 [tool.poetry.dev-dependencies]
 
