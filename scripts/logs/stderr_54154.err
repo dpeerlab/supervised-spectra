@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/lilac/data/peer/rsaha/supervised-spectra/scripts/spec-v2.py", line 14, in <module>
+    import Spectra as spc
+ModuleNotFoundError: No module named 'Spectra'

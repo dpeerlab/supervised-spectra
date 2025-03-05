@@ -1,0 +1,6 @@
+/lilac/data/peer/rsaha/supervised-spectra/scripts/spec-v2.py:24: FutureWarning: The behavior of Series.replace (and DataFrame.replace) with CategoricalDtype is deprecated. In a future version, replace will only be used for cases that preserve the categories. To change the categories, use ser.cat.rename_categories instead.
+  adata.obs['cytokine_coarse'] = adata.obs['cytokine_coarse'].replace('IL-2.15', 'IL-2-15')
+Traceback (most recent call last):
+  File "/lilac/data/peer/rsaha/supervised-spectra/scripts/spec-v2.py", line 58, in <module>
+    with open('/data/peer/rsaha/supervised-spectra/scripts/results', 'w') as f:
+IsADirectoryError: [Errno 21] Is a directory: '/data/peer/rsaha/supervised-spectra/scripts/results'

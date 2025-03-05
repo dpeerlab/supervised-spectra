@@ -1,0 +1,13 @@
+running postprocess_spectra for 
+#!/bin/bash
+#SBATCH -J spectra_cui_post
+#SBATCH -o /data/peer/rsaha/supervised-spectra/scripts/logs/spectra_cui_full_post_%j.out
+#SBATCH -e /data/peer/rsaha/supervised-spectra/scripts/logs/spectra_cui_full_post_%j.err
+#SBATCH --partition=cpuqueue
+#SBATCH -n 20 --ntasks-per-node=20 --mem-per-cpu=20G --time=72:00:00
+source ~/.bashrc
+cd /data/peer/rsaha/supervised-spectra
+poetry shell
+cd /data/peer/rsaha/supervised-spectra/scripts
+poetry run python /data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py /data/peer/rsaha/supervised-spectra/scripts/results/cui23_processed_spectrav2_example_20241216_spectra_epochs_10000-time_1740428884.7412221.h5ad /data/peer/rsaha/supervised-spectra/scripts/results/cui23_processed_spectrav2_example_20241216_spectra_epochs_10000-time_1740428884.7412221.pickle None /data/peer/rsaha/supervised-spectra/scripts/results/gene_dict.json /data/peer/rsaha/supervised-spectra/scripts/results/ cytokine_coarse None None None
+Submitted batch job 54166
