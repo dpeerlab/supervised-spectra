@@ -87,3 +87,6 @@ venv.bak/
 
 # Others
 .pypi_token
+
+# Large result files
+scripts/results/
