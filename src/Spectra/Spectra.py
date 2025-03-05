@@ -347,7 +347,7 @@ def est_spectra(
 
 def return_markers(factor_matrix, id2word, n_top_vals=100):
     idx_matrix = np.argsort(factor_matrix, axis=1)[:, ::-1][:, :n_top_vals]
-    df = pd.DataFrame(np.zeros(idx_matrix.shape))
+    df = pd.DataFrame(np.zeros(idx_matrix.shape)) #TODO: change to a non-float default value
     for i in range(idx_matrix.shape[0]):
         for j in range(idx_matrix.shape[1]):
             df.iloc[i, j] = id2word[idx_matrix[i, j]]

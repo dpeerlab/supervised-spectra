@@ -1,0 +1,35 @@
+Virtual environment already activated: /home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10
+Cell type labels in gene set annotation dictionary and AnnData object are identical
+removing gene set Treg_TNFA for cell type global which is of length 5 1 genes are found in the data. minimum length is 3
+removing gene set all_ethanol_metabolism for cell type global which is of length 5 0 genes are found in the data. minimum length is 3
+removing gene set all_pyruvate_metabolism for cell type global which is of length 3 2 genes are found in the data. minimum length is 3
+removing gene set all_taurine-hypotaurine_metabolism for cell type global which is of length 4 2 genes are found in the data. minimum length is 3
+removing gene set all_Beta-Ala_metabolism for cell type global which is of length 4 2 genes are found in the data. minimum length is 3
+removing gene set all_coagulation-factor_production for cell type global which is of length 11 0 genes are found in the data. minimum length is 3
+removing gene set all_bile-acid_synthesis for cell type global which is of length 12 2 genes are found in the data. minimum length is 3
+removing gene set all_creatinine_metabolism for cell type global which is of length 4 1 genes are found in the data. minimum length is 3
+removing gene set all_platelet-activation-factor_production for cell type global which is of length 9 2 genes are found in the data. minimum length is 3
+removing gene set all_HIS_metabolism for cell type global which is of length 11 2 genes are found in the data. minimum length is 3
+removing gene set all_thiamin_metabolism for cell type global which is of length 4 2 genes are found in the data. minimum length is 3
+removing gene set Treg_TNFA for cell type PBS which is of length 5 1 genes are found in the data. minimum length is 3
+removing gene set Treg_TNFA for cell type IFN-γ which is of length 5 1 genes are found in the data. minimum length is 3
+removing gene set Treg_TNFA for cell type IL-2-15 which is of length 5 1 genes are found in the data. minimum length is 3
+Your gene set annotation dictionary is now correctly formatted.
+Cell type labels in gene set annotation dictionary and AnnData object are identical
+removing gene set Treg_TNFA for cell type global which is of length 5 1 genes are found in the data. minimum length is 3
+removing gene set all_ethanol_metabolism for cell type global which is of length 5 0 genes are found in the data. minimum length is 3
+removing gene set all_pyruvate_metabolism for cell type global which is of length 3 2 genes are found in the data. minimum length is 3
+removing gene set all_taurine-hypotaurine_metabolism for cell type global which is of length 4 2 genes are found in the data. minimum length is 3
+removing gene set all_Beta-Ala_metabolism for cell type global which is of length 4 2 genes are found in the data. minimum length is 3
+removing gene set all_coagulation-factor_production for cell type global which is of length 11 0 genes are found in the data. minimum length is 3
+removing gene set all_bile-acid_synthesis for cell type global which is of length 12 2 genes are found in the data. minimum length is 3
+removing gene set all_creatinine_metabolism for cell type global which is of length 4 1 genes are found in the data. minimum length is 3
+removing gene set all_platelet-activation-factor_production for cell type global which is of length 9 2 genes are found in the data. minimum length is 3
+removing gene set all_HIS_metabolism for cell type global which is of length 11 2 genes are found in the data. minimum length is 3
+removing gene set all_thiamin_metabolism for cell type global which is of length 4 2 genes are found in the data. minimum length is 3
+removing gene set Treg_TNFA for cell type PBS which is of length 5 1 genes are found in the data. minimum length is 3
+removing gene set Treg_TNFA for cell type IFN-γ which is of length 5 1 genes are found in the data. minimum length is 3
+removing gene set Treg_TNFA for cell type IL-2-15 which is of length 5 1 genes are found in the data. minimum length is 3
+Your gene set annotation dictionary is now correctly formatted.
+Cell type labels in gene set annotation dictionary and AnnData object are identical
+Your gene set annotation dictionary is now correctly formatted.

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py", line 412, in <module>
+    else: main()
+  File "/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py", line 355, in main
+    with open(sys.argv[4]) as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'cui23_processed_spectrav2_example_20241216_spectra_epochs_10000-time_1740428884.7412221.pickle/gene_dict.json'

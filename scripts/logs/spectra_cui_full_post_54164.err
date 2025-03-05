@@ -1,0 +1,120 @@
+/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/anndata/_core/storage.py:39: ImplicitModificationWarning: X should not be a np.matrix, use np.ndarray instead.
+  warnings.warn(msg, ImplicitModificationWarning)
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Tgfbr1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Creb1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Stat5b' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Tgfbr2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Nfatc2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Stat5a' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Il2ra' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Ets1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Il2rb' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Il2rg' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Nfatc1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Smad3' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Atf1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Pfn1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Gsk3b' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Raf1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Itpr2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Calr' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Ywhab' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Grb2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Lck' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Grk2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Camk4' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Dapp1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Cab39' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Rps6ka1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Arf1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Mknk2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Actr2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Nfkbib' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Csnk2b' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Ap2m1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Sla' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Nck1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Ecsit' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Prkag1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Rps6ka3' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Cltc' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Bax' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Ube2n' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Mapk1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Stat2' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Ripk1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Cdkn1b' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Rit1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Cdk4' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Mapkap1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Pin1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Prkar2a' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py:74: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value 'Irak1' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  df.iloc[i,j] = vocab.iloc[idx_matrix[i,j]]
+Traceback (most recent call last):
+  File "/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py", line 412, in <module>
+    else: main()
+  File "/data/peer/rsaha/supervised-spectra/scripts/postprocess_spectra_v2.py", line 382, in main
+    cell_scores.to_csv(results_dir + run_name + "cellscores.csv")
+  File "/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+  File "/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+  File "/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+  File "/home/sahar1/.cache/pypoetry/virtualenvs/supervised-spectra-wCv6kNdj-py3.10/lib/python3.10/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'cui23_processed_spectrav2_example_20241216_spectra_epochs_10000-time_1740428884.7412221.pickle'
